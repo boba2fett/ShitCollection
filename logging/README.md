@@ -6,6 +6,7 @@ This is tried in index.php and indexForward.php  :D
 
 You may have heard about the User-Agent and IP, but what about the screen and window sizes?
 In log-indexForward is example data:
+
 | "Datum"               |  "IP"                             |  "Seite"                                                                        |  "Browser" |  "screenX" |  "screenY" |  "windowX" |  "windowY" | 
 |-----------------------|-----------------------------------|---------------------------------------------------------------------------------|------------|------------|------------|------------|------------| 
 | "25.10.2019 23:51:13" |  "127.0.0.1", "/indexForward.php" |  "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0" |  "1920"    |  "1080"    |  "1920"    |  "926"     |            | 
