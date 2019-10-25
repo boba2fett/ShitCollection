@@ -18,4 +18,5 @@ An other way to use this is recognising your users based on this. For example in
 
 ## Future ideas
 cookies
+
 detection and storing if user has disabled javascript
