@@ -3,11 +3,11 @@
 Als ertes denken wir uns eine Darstellung aus. Wir gehen von der Mitte aus nach außen und dann einen im Uhrzeigersinn. Das ganze sechs mal.
 also:
 6|6|6|6|6|6
-14  x|x|x|x|x
+14|x|x|x|x|x
 4|x|x|x|x|x
 x|x|x|x|x|x
 die erste Spalte ist nur 6 also lassen wir sie weg
-14  x|x|x|x|x
+14|x|x|x|x|x
 4|x|x|x|x|x
 x|x|x|x|x|x
 
