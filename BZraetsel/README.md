@@ -1,5 +1,5 @@
 # BZraetsel
-## BZraetsel 3
+## BZraetsel 4
 Als ertes denken wir uns eine Darstellung aus. Wir gehen von der Mitte aus nach außen und dann einen im Uhrzeigersinn. Das ganze sechs mal.
 also:
 
@@ -100,3 +100,5 @@ Das Ergebnis:
 ]
 
 Theoretisch sind es nur zwei Lösungen, zwei sind jeweils San der 6-14-4 Achse gespiegelt. Die 4 liegt entweder zwischen 19 und 18 oder 9 und 18.
+
+Das Programm ist dist19.jar der Quelltext befindet sich unter dist19/src/Dist.java
