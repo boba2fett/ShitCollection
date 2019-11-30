@@ -2,14 +2,14 @@
 ## BZraetsel 3
 Als ertes denken wir uns eine Darstellung aus. Wir gehen von der Mitte aus nach außen und dann einen im Uhrzeigersinn. Das ganze sechs mal.
 also:
-6   6   6   6   6   6
-14  x   x   x   x   x
-4   x   x   x   x   x
-x   x   x   x   x   x
+6|6|6|6|6|6
+14  x|x|x|x|x
+4|x|x|x|x|x
+x|x|x|x|x|x
 die erste Spalte ist nur 6 also lassen wir sie weg
-14  x   x   x   x   x
-4   x   x   x   x   x
-x   x   x   x   x   x
+14  x|x|x|x|x
+4|x|x|x|x|x
+x|x|x|x|x|x
 
 daraus ergeben sich die Bedingungen:
 -Spaltenweise müssen sich die ersten beiden Zeilen auf 18 addieren
@@ -17,14 +17,14 @@ daraus ergeben sich die Bedingungen:
 (letzte Spalte mit erster Spalte ergänzen)
 
 die oberen Zeilen können nur diese Paare sein:
-1   17
-2   16
-3   15
-4   14x
-5   13
-6   12x
-7   11
-8   10
+1|17
+2|16
+3|15
+4|14x
+5|13
+6|12x
+7|11
+8|10
 
 d.h. es muss jede Kombination der Paare ausprobiert werden:
 5 aus 6 auswählen sind 6 Möglichkeiten
