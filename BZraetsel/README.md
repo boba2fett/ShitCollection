@@ -55,6 +55,7 @@ diese 5 Paare können zeilenweise vertauscht sein => 2^5 Möglichkeiten
 6*5!*2^5=23040
 Die übrigen Felder können nun berechnet werden. Wenn der errechnete Wert groesser 0 und kleiner 20 ist und keine zahl ist die schon verwendet wird wurde die Lösung gefunden.
 Das Ergebnis:
+
 [
 
 [14, 17, 7, 15, 5, 16],
@@ -78,6 +79,7 @@ Das Ergebnis:
 
 
 [
+
 [14, 16, 5, 15, 7, 17],
 
 [4, 2, 13, 3, 11, 1],
@@ -88,6 +90,7 @@ Das Ergebnis:
 
 
 [
+
 [14, 7, 17, 5, 15, 16],
 
 [4, 11, 1, 13, 3, 2],
