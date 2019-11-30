@@ -4,23 +4,23 @@ Als ertes denken wir uns eine Darstellung aus. Wir gehen von der Mitte aus nach 
 also:
 
 
-6|6|6|6|6|6
+6 | 6 | 6 | 6 | 6 | 6
 
-14|x|x|x|x|x
+14 | x | x | x | x | x
 
-4|x|x|x|x|x
+4 | x | x | x | x | x
 
-x|x|x|x|x|x
+x | x | x | x | x | x
 
 
 die erste Spalte ist nur 6 also lassen wir sie weg
 
 
-14|x|x|x|x|x
+14 | x | x | x | x | x
 
-4|x|x|x|x|x
+4 | x | x | x | x | x
 
-x|x|x|x|x|x
+x | x | x | x | x | x
 
 
 daraus ergeben sich die Bedingungen:
@@ -31,21 +31,21 @@ daraus ergeben sich die Bedingungen:
 die oberen Zeilen können nur diese Paare sein (Paare mit x ausgeschlossen:
 
 
-1|17
+1 | 17
 
-2|16
+2 | 16
 
-3|15
+3 | 15
 
-4|14x
+4 | 14x
 
-5|13
+5 | 13
 
-6|12x
+6 | 12x
 
-7|11
+7 | 11
 
-8|10
+8 | 10
 
 
 d.h. es muss jede Kombination der Paare ausprobiert werden:
