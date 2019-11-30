@@ -13,7 +13,7 @@ also:
 x | x | x | x | x | x
 
 
-die erste Spalte ist nur 6 also lassen wir sie weg
+die erste Zeile ist nur 6 also lassen wir sie weg
 
 
 14 | x | x | x | x | x
