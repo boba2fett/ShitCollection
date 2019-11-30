@@ -5,8 +5,11 @@ also:
 
 
 6|6|6|6|6|6
+
 14|x|x|x|x|x
+
 4|x|x|x|x|x
+
 x|x|x|x|x|x
 
 
@@ -14,7 +17,9 @@ die erste Spalte ist nur 6 also lassen wir sie weg
 
 
 14|x|x|x|x|x
+
 4|x|x|x|x|x
+
 x|x|x|x|x|x
 
 
@@ -23,16 +28,23 @@ daraus ergeben sich die Bedingungen:
 -Spaltenweise müssen sich die letzten beiden Zeilen und die mittlere Zeile der nächsten Spalte auf 24 addieren
 (letzte Spalte mit erster Spalte ergänzen)
 
-die oberen Zeilen können nur diese Paare sein:
+die oberen Zeilen können nur diese Paare sein (Paare mit x ausgeschlossen:
 
 
 1|17
+
 2|16
+
 3|15
+
 4|14x
+
 5|13
+
 6|12x
+
 7|11
+
 8|10
 
 
