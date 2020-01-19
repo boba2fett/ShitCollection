@@ -1,0 +1,188 @@
+	\documentclass[12pt,a4paper,landscape]{article}
+\addtolength{\footskip}{-1cm}
+\usepackage[a4paper, left=1.0cm, right=1.0cm, top=1.0cm, bottom=1.0cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx} 
+\usepackage{hyperref} 
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shadows,arrows}
+
+\title{$$Graph \leftrightarrow Ableitungsgraph$$}
+\author{Florian Tünte}
+%
+
+\usepackage[onehalfspacing]{setspace}
+\def\code#1{\texttt{#1}}
+\usepackage{pgfplots}
+
+\begin{document}
+	\maketitle
+	
+	\pagebreak
+	
+	\section{$$Ableitung \rightarrow Graph$$}
+	
+	\begin{figure}[htb]
+	\centering
+	\begin{minipage}[t]{.45\linewidth}
+		\centering
+	
+	%\caption{$$f'(x)=$$}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45]
+	
+	\begin{axis}[
+	x=1.2cm,y=1.2cm,
+	axis lines=middle,
+	%ymajorgrids=true,
+	%xmajorgrids=true,
+	xmin=-5,
+	xmax=5,
+	ymin=-4,
+	ymax=4,
+	%x filter/.expression={abs(x)<0.3 ? nan : x},
+	restrict y to domain=-10:10,
+	]
+	\draw[line width=4.pt] (-15.43,7.94) -- (-11.43,7.94);
+	\pgfmathsetmacro{\constante}{1}
+	\addplot [red,domain=-15:15,samples=400]
+	{1/20*(x+3)*(x-1)*(x-4)};
+	\end{axis}
+	\end{tikzpicture}
+\end{minipage}
+\hfill
+	\begin{minipage}[t]{.45\linewidth}
+		\centering
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45]
+	
+	\begin{axis}[
+	x=1.2cm,y=1.2cm,
+	axis lines=middle,
+	%ymajorgrids=true,
+	%xmajorgrids=true,
+	xmin=-5,
+	xmax=5,
+	ymin=-4,
+	ymax=3,
+	%x filter/.expression={abs(x)<0.3 ? nan : x},
+	restrict y to domain=-10:10,
+	]
+	\draw[line width=4.pt] (-15.43,7.94) -- (-11.43,7.94);
+	\pgfmathsetmacro{\constante}{1}
+	%\addplot [red,domain=-15:15,samples=400]
+	%{((x*x*x*x)/80 - (x*x*x)/30 - (11*x*x)/40 + 3*x/5)};
+	\end{axis}
+	\end{tikzpicture}
+\end{minipage}
+%\caption{Bildtitel}
+\end{figure}
+	\pagebreak
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45]
+	
+	\begin{axis}[
+	x=1.2cm,y=1.2cm,
+	axis lines=middle,
+	%ymajorgrids=true,
+	%xmajorgrids=true,
+	xmin=-5,
+	xmax=5,
+	ymin=-4,
+	ymax=3,
+	%x filter/.expression={abs(x)<0.3 ? nan : x},
+	restrict y to domain=-10:10,
+	]
+	\draw[line width=4.pt] (-15.43,7.94) -- (-11.43,7.94);
+	\pgfmathsetmacro{\constante}{1}
+	\addplot [red,domain=-15:15,samples=400]
+	{((x*x*x*x)/80 - (x*x*x)/30 - (11*x*x)/40 + 3*x/5)};
+	\end{axis}
+	\end{tikzpicture}
+	
+	
+	
+	
+	
+	
+	
+	
+	\pagebreak
+	
+	\section{$$Graph \rightarrow Ableitung$$}
+	\begin{figure}[htb]
+		\centering
+		\begin{minipage}[t]{.45\linewidth}
+			\centering
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45]
+	
+	\begin{axis}[
+	x=1.2cm,y=1.2cm,
+	axis lines=middle,
+	%ymajorgrids=true,
+	%xmajorgrids=true,
+	xmin=-5,
+	xmax=5,
+	ymin=-4,
+	ymax=4,
+	%x filter/.expression={abs(x)<0.3 ? nan : x},
+	restrict y to domain=-10:10,
+	]
+	\draw[line width=4.pt] (-15.43,7.94) -- (-11.43,7.94);
+	\pgfmathsetmacro{\constante}{1}
+	\addplot [red,domain=-15:15,samples=400]
+	{1/20*(x+3)*(x+2)*(x-1)*(x-4)};
+	\end{axis}
+	\end{tikzpicture}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{.45\linewidth}
+	\centering
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45]
+	
+	\begin{axis}[
+	x=1.2cm,y=1.2cm,
+	axis lines=middle,
+	%ymajorgrids=true,
+	%xmajorgrids=true,
+	xmin=-5,
+	xmax=5,
+	ymin=-4,
+	ymax=3,
+	%x filter/.expression={abs(x)<0.3 ? nan : x},
+	restrict y to domain=-10:10,
+	]
+	\draw[line width=4.pt] (-15.43,7.94) -- (-11.43,7.94);
+	\pgfmathsetmacro{\constante}{1}
+	%\addplot [red,domain=-15:15,samples=400]
+	%{((x*x*x*x)/80 - (x*x*x)/30 - (11*x*x)/40 + 3*x/5)};
+	\end{axis}
+	\end{tikzpicture}
+\end{minipage}
+\end{figure}
+	\pagebreak
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45]
+	
+	\begin{axis}[
+	x=1.2cm,y=1.2cm,
+	axis lines=middle,
+	%ymajorgrids=true,
+	%xmajorgrids=true,
+	xmin=-5,
+	xmax=5,
+	ymin=-4,
+	ymax=3,
+	%x filter/.expression={abs(x)<0.3 ? nan : x},
+	restrict y to domain=-10:10,
+	]
+	\draw[line width=4.pt] (-15.43,7.94) -- (-11.43,7.94);
+	\pgfmathsetmacro{\constante}{1}
+	\addplot [red,domain=-15:15,samples=400]
+	{(x/20 + 3/20)*(x - 4)*(x - 1) + (x/20 + 3/20)*(x - 4)*(x + 2) + (x/20 + 3/20)*(x - 1)*(x + 2) + (x - 4)*(x - 1)*(x + 2)/20};
+	\end{axis}
+	\end{tikzpicture}
+%\end{figure}
+	
+\end{document}
