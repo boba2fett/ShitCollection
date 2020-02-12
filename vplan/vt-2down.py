@@ -5,7 +5,7 @@ import json
 import os, sys
 from datetime import datetime
 
-planDate = ""
+planBefore = ""
 
 while True:
     try:
@@ -13,9 +13,10 @@ while True:
         PlanData = requests.get("http://gymnasium-mariengarden.de/vertretungsplan/PlanData.json", headers=headers).text
         plan = json.loads(PlanData)
         
-        if planDate != plan["date"]:
+        if planBefore != plan:
             datum, version = plan["date"].split(" ")
             datum=datum.replace(".", "-")
+            datum=datetime.strptime(datum, '%d-%m-%Y').strftime('%Y-%m-%d')
             
             htmlDat = requests.get("http://www.gymnasium-mariengarden.de/vertretungsplan/plans.htm", headers=headers).text
             m = re.search('<td class=date align=right>(.*)<br />powered by sniessing</td>',htmlDat)
@@ -27,13 +28,13 @@ while True:
             
             if not os.path.exists('logExt/'+datum):
                 os.mkdir('logExt/'+datum)
-            print(dt_string)
+            print('['+dt_string+'] neuer Plan für den '+datum)
             
             f = open('logExt/'+datum+'/'+dt_string+'.json', 'w')
             f.write(PlanData)
             f.close()
         
-            planDate = plan["date"]
+            planBefore = plan
         time.sleep(250)
 
     except KeyboardInterrupt:
