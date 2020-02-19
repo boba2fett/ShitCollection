@@ -1,38 +1,48 @@
 from pynput import keyboard
 from pynput.keyboard import Key, Controller
 import pyperclip
-
-pyperclip.copy('Laal')
-print(pyperclip.paste())
+import sys
 
 
-keyboardController = Controller()
-keyboardController.press(Key.ctrl.value)
-keyboardController.press('x')
-keyboardController.release('x')
-keyboardController.release(Key.ctrl.value)
+if len(sys.argv)<2:
+    print('Usage: insfiles.py fileToRead')
+    sys.exit(1)
 
+filename=sys.argv[1]
+f=open(filename,"r")
 
-# The key combination to check
-COMBINATION = {keyboard.Key.cmd, keyboard.Key.ctrl}
+usekey=''
+print('Define the Key to use:')
 
-# The currently active modifiers
-current = set()
 def on_press(key):
-    if key in COMBINATION:
-        current.add(key)
-        if all(k in current for k in COMBINATION):
-            print('All modifiers active!')
-    if key == keyboard.Key.esc:
-        listener.stop()
+    global usekey
+    if key == Key.esc:
+        f.close()
+        return False  # stop listener
+    if usekey=='':
+        usekey=key
+        print('Will use: '+str(usekey))
+    elif key==usekey:
+        print('UseKey pressed: ' + str(key))
+        line = f.readline()
+        if not line:
+            print('------Reached End of File-----------')
+            f.close()
+            return False
+        else:
+            pyperclip.copy(line.strip())
+            print(pyperclip.paste())
+            
+            try:
+                keyboardController = Controller()
+                keyboardController.press(Key.ctrl.value)
+                keyboardController.press('v')
+                keyboardController.release('v')
+                keyboardController.release(Key.ctrl.value)
+            except:
+                print('failed to press crtl-v')
 
 
-def on_release(key):
-    try:
-        current.remove(key)
-    except KeyError:
-        pass
-
-
-with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
-    listener.join()
+listener = keyboard.Listener(on_press=on_press)
+listener.start()  # start to listen on a separate thread
+listener.join()  # remove if main thread is polling self.keys

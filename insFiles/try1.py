@@ -8,14 +8,17 @@ from pynput import keyboard
 
 
 def on_press(key):
-    if key == keyboard.Key.esc:
+    if key == Key.esc:
         return False  # stop listener
     try:
         k = key.char  # single-char keys
         print('Key pressed: ' + k)
     except:
-        k = key.name  # other keys
-        print('Key pressed: ' + k)
+        try:
+            k = key.name  # other keys
+            print('Key pressed: ' + k)
+        except:
+            print('Key pressed: ' + str(key))
 
 
 listener = keyboard.Listener(on_press=on_press)
