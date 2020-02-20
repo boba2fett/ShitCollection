@@ -1,4 +1,4 @@
-__version__="1.0.0"
+__version__="0.1.0"
 
 import sys,os
 import contextlib
@@ -115,7 +115,7 @@ def update(dl_url, force_update=False):
         shutil.copymode(backup_path, app_path)
     except Exception as e:
         os.chmod(app_path, '0755')
-    os.execl(sys.executable, os.path.abspath(file), *sys.argv)
+    os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)
     return
     
 
