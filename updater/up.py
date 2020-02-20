@@ -1,4 +1,4 @@
-__version__="0.1.0"
+__version__="0.0.1"
 
 import traceback
 
@@ -81,7 +81,7 @@ saved in its place.
     dl_path = app_path + ".new"
     backup_path = app_path + ".old"
     try:
-        dl_file = open(dl_path, 'w')
+        dl_file = open(dl_path, 'wb')
         http_stream = urllib.request.urlopen(dl_url)
         total_size = None
         bytes_so_far = 0
@@ -90,11 +90,11 @@ saved in its place.
             total_size = int(http_stream.info().get('Content-Length').strip())
         except:
             # The header is improper or missing Content-Length, just download
-            dl_file.write(str(http_stream.read()))
+            dl_file.write(http_stream.read())
 
         while total_size:
             chunk = http_stream.read(chunk_size)
-            dl_file.write(str(chunk))
+            dl_file.write(chunk)
             bytes_so_far += len(chunk)
 
             if not chunk:
