@@ -1,4 +1,4 @@
-__version__="0.1.0"
+__version__="1.0.0"
 
 
 
@@ -30,11 +30,14 @@ Compares two version number strings
         seqB = map(num, re.findall('\d+|\w+', vB.replace('-SNAPSHOT', '')))
 
         # this is to ensure that 1.0 == 1.0.0 in cmp(..)
-        lenA, lenB = len(seqA), len(seqB)
+        lenA, lenB = len(list(seqA)), len(list(seqB))
         for i in range(lenA, lenB): seqA += (0,)
         for i in range(lenB, lenA): seqB += (0,)
-
-        rc = cmp(seqA, seqB)
+        
+        def cmp(a, b):
+            return (a > b) - (a < b)
+        
+        rc = cmp(list(seqA), list(seqB))
 
         if rc == 0:
             if vA.endswith('-SNAPSHOT'): return -1
