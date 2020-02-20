@@ -1,5 +1,5 @@
 __version__="1.0.0"
-update('https://github.com/boba2fett/ShitCollection/raw/master/updater/up.py')
+
 
 
 def update(dl_url, force_update=False):
@@ -9,6 +9,7 @@ If an update is needed, the current script is backed up and the update is
 saved in its place.
 """
     import urllib
+    import urllib.request
     import re
     from subprocess import call
     def compare_versions(vA, vB):
@@ -42,13 +43,14 @@ Compares two version number strings
 
     # dl the first 256 bytes and parse it for version number
     try:
-        http_stream = urllib.urlopen(dl_url)
+        http_stream = urllib.request.urlopen(dl_url)
         update_file = http_stream.read(256)
         http_stream.close()
-    except:
+    except Exception as e:
+        print(e)
         return
 
-    match_regex = re.search(r'__version__ *= *"(\S+)"', update_file)
+    match_regex = re.search(r'__version__ *= *"(\S+)"', str(update_file))
     if not match_regex:
         print("No version info could be found")
         return
@@ -111,25 +113,33 @@ Compares two version number strings
 
         http_stream.close()
         dl_file.close()
-    except:
+    except Exception as e:
+        print(e)
         return
 
     try:
         os.rename(app_path, backup_path)
-    except:
+    except Exception as e:
+        print(e)
         return
 
     try:
         os.rename(dl_path, app_path)
-    except:
+    except Exception as e:
+        print(e)
         return
 
     try:
         import shutil
         shutil.copymode(backup_path, app_path)
-    except:
+    except Exception as e:
+        print(e)
         os.chmod(app_path, '0755')
 
     print("New version installed as %s" % app_path)
     print("(previous version backed up to %s)" % (backup_path))
     return
+    
+    
+    
+update('https://github.com/boba2fett/ShitCollection/raw/master/updater/up.py')
