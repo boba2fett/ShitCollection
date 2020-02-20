@@ -1,6 +1,6 @@
 __version__="1.0.0"
 
-
+import traceback
 
 def update(dl_url, force_update=False):
     """
@@ -43,6 +43,7 @@ saved in its place.
         http_stream.close()
     except Exception as e:
         print(e)
+        traceback.print_exc()
         return
 
     match_regex = re.search(r'__version__ *= *"(\S+)"', str(update_file))
@@ -86,7 +87,7 @@ saved in its place.
         bytes_so_far = 0
         chunk_size = 8192
         try:
-            total_size = int(http_stream.info().getheader('Content-Length').strip())
+            total_size = int(http_stream.info().get('Content-Length').strip())
         except:
             # The header is improper or missing Content-Length, just download
             dl_file.write(http_stream.read())
@@ -111,18 +112,21 @@ saved in its place.
         dl_file.close()
     except Exception as e:
         print(e)
+        traceback.print_exc()
         return
 
     try:
         os.rename(app_path, backup_path)
     except Exception as e:
         print(e)
+        traceback.print_exc()
         return
 
     try:
         os.rename(dl_path, app_path)
     except Exception as e:
         print(e)
+        traceback.print_exc()
         return
 
     try:
@@ -130,6 +134,7 @@ saved in its place.
         shutil.copymode(backup_path, app_path)
     except Exception as e:
         print(e)
+        traceback.print_exc()
         os.chmod(app_path, '0755')
 
     print("New version installed as %s" % app_path)
