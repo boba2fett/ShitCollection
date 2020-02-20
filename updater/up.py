@@ -1,5 +1,5 @@
 __version__="1.0.0"
-
+update('https://github.com/boba2fett/ShitCollection/raw/master/updater/up.py')
 
 
 def update(dl_url, force_update=False):
