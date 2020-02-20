@@ -1,4 +1,4 @@
-__version__="0.1.0"
+__version__="1.0.0"
 
 
 
@@ -11,39 +11,31 @@ saved in its place.
     import urllib
     import urllib.request
     import re
+    import os,sys
     from subprocess import call
-    def compare_versions(vA, vB):
-        """
-Compares two version number strings
-@param vA: first version string to compare
-@param vB: second version string to compare
-@author <a href="http_stream://sebthom.de/136-comparing-version-numbers-in-jython-pytho/">Sebastian Thomschke</a>
-@return negative if vA < vB, zero if vA == vB, positive if vA > vB.
-"""
-        if vA == vB: return 0
-
-        def num(s):
-            if s.isdigit(): return int(s)
-            return s
-
-        seqA = map(num, re.findall('\d+|\w+', vA.replace('-SNAPSHOT', '')))
-        seqB = map(num, re.findall('\d+|\w+', vB.replace('-SNAPSHOT', '')))
-
-        # this is to ensure that 1.0 == 1.0.0 in cmp(..)
-        lenA, lenB = len(list(seqA)), len(list(seqB))
-        for i in range(lenA, lenB): seqA += (0,)
-        for i in range(lenB, lenA): seqB += (0,)
+    def compare_versions(vlocal, vremote):
         
-        def cmp(a, b):
-            return (a > b) - (a < b)
+        if vlocal == vremote: return 0
         
-        rc = cmp(list(seqA), list(seqB))
-
-        if rc == 0:
-            if vA.endswith('-SNAPSHOT'): return -1
-            if vB.endswith('-SNAPSHOT'): return 1
-        return rc
-
+        def isfloat(s):
+            try:
+                float(s)
+            except ValueError:
+                return False
+            return True
+        
+        vlocal=vlocal.replace('.','')
+        vremote=vremote.replace('.','')
+        
+        if isfloat(vlocal) and isfloat(vremote):
+            if float(vlocal) > float(vremote):
+                return 1
+            else:
+                return -1
+        else:
+            print("lool %s und %s" % (str(vlocal),str(vremote)))
+            return 0
+        
     # dl the first 256 bytes and parse it for version number
     try:
         http_stream = urllib.request.urlopen(dl_url)
@@ -75,7 +67,8 @@ Compares two version number strings
                 % (__version__, update_version))
             return
         else:
-            print("You already have the latest version.")
+            print("Local version %s equal to available %s, not updating." \
+                % (__version__, update_version))
             return
 
     # dl, backup, and save the updated script
@@ -88,7 +81,7 @@ Compares two version number strings
     backup_path = app_path + ".old"
     try:
         dl_file = open(dl_path, 'w')
-        http_stream = urllib.urlopen(dl_url)
+        http_stream = urllib.request.urlopen(dl_url)
         total_size = None
         bytes_so_far = 0
         chunk_size = 8192
