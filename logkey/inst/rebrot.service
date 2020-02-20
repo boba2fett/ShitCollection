@@ -1,0 +1,13 @@
+[Unit]
+Description=rebrot
+After=network.target network-online.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStartPre=/bin/mkdir -p /var/run/rebrot
+PIDFile=/var/run/rebrot/service.pid
+ExecStart=/usr/share/python3 /usr/bin/k.py
+
+[Install]
+WantedBy=multi-user.target
