@@ -90,11 +90,11 @@ saved in its place.
             total_size = int(http_stream.info().get('Content-Length').strip())
         except:
             # The header is improper or missing Content-Length, just download
-            dl_file.write(http_stream.read())
+            dl_file.write(str(http_stream.read()))
 
         while total_size:
             chunk = http_stream.read(chunk_size)
-            dl_file.write(chunk)
+            dl_file.write(str(chunk))
             bytes_so_far += len(chunk)
 
             if not chunk:
