@@ -1,4 +1,4 @@
-__version__="2.0.0"
+__version__="1.0.0"
 
 import traceback
 
@@ -140,10 +140,7 @@ saved in its place.
     print("New version installed as %s" % app_path)
     print("(previous version backed up to %s)" % (backup_path))
     
-    python = sys.executable
-    os.execl('python3',sys.argv[0])
-    os.execl(sys.executable, sys.executable, *sys.argv) 
-    print("asd %s"%sys.argv[0])
+    os.execl(sys.executable, os.path.abspath(file), *sys.argv)
     return
     
     
