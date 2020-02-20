@@ -140,7 +140,7 @@ saved in its place.
     print("New version installed as %s" % app_path)
     print("(previous version backed up to %s)" % (backup_path))
     
-    os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)
+    os.execl(sys.executable, os.path.abspath(file), *sys.argv)
     return
     
     
