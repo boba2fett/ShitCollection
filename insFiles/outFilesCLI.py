@@ -7,10 +7,11 @@ import sys
 f=''
 usekey=''
 last_line=''
+delayed=False
+hook=''
 
 def on_press(key):
-    global usekey
-    global last_line
+    global usekey, last_line, hook, delayed
     if key == Key.esc:
         f.close()
         return False  # stop listener
@@ -26,19 +27,27 @@ def on_press(key):
             keyboardController.press('c')
             keyboardController.release('c')
             keyboardController.release(Key.ctrl.value)
+            if delayed:
+                time.sleep(0.5)
             pp=pyperclip.paste()
-            if pp!=last_line:
+            if pp!=last_line and hook in pp:
                 print(pp)
                 f.write(pp+'\n')
                 last_line=pp
+            else:
+                print('Same as last')
         except:
             f.flush()
             print('failed to press crtl-c')
 
 
-def main(filename):
+def main(filename,hookline: ('search for occurence of string', 'option', 's'),delay: ('make a delay before using clipboard', 'flag', 'd')):
     "Insert line by line in a file from a GUI by just pressing a key"
-    global f
+    global f,hook,delayed
+    delayed=delay
+    hook=hookline
+    if not hook:
+        hook=''
     f=open(filename,"w")
     print('Define the Key to use by pressing it:')
     listener = keyboard.Listener(on_press=on_press)

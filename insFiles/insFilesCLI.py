@@ -6,7 +6,7 @@ import sys
 
 f=''
 usekey=''
-
+autoenter=False
 
 def on_press(key):
     global usekey
@@ -33,13 +33,18 @@ def on_press(key):
                 keyboardController.press('v')
                 keyboardController.release('v')
                 keyboardController.release(Key.ctrl.value)
+                if autoenter:
+                    keyboardController.press(Key.enter.value)
+                    keyboardController.release(Key.enter.value)
             except:
                 print('failed to press crtl-v')
 
 
-def main(filename):
+def main(filename, enter: ('makes an enter after insert', 'flag', 'e')):
     "Insert line by line of a file into a GUI by just pressing a key"
     global f
+    global autoenter
+    autoenter=enter
     f=open(filename,"r")
     print('Define the Key to use by pressing it:')
     listener = keyboard.Listener(on_press=on_press)
