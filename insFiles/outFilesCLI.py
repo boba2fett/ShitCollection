@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from pynput import keyboard
 from pynput.keyboard import Key, Controller
 import pyperclip

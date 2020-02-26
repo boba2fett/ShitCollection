@@ -1,9 +1,4 @@
-import sys
-from pynput.keyboard import Key, Controller
-import termios
-import contextlib
-
-
+from pynput.keyboard import Key
 from pynput import keyboard
 
 
