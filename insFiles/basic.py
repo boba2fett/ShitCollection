@@ -3,6 +3,8 @@ from pynput import keyboard
 
 
 def on_press(key):
+    k=key
+    print('Key pressed: ' + str(k))
     if key == Key.esc:
         return False  # stop listener
     try:

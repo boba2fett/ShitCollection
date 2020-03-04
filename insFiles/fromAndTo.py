@@ -27,7 +27,9 @@ def copyToFile():
         keyboardController.release(Key.ctrl.value)
         if delayed:
             print('wait')
-            time.sleep(0.5)
+            time.sleep(0.7)
+        else:
+            time.sleep(0.4)
         pp=pyperclip.paste()
         if pp!=last_line and hook in pp:
             print('Write: '+pp)
@@ -54,7 +56,11 @@ def pasteFromFile():
     else:
         pyperclip.copy(line.strip())
         print('Read: '+pyperclip.paste())
-        
+        if delayed:
+            print('wait')
+            time.sleep(0.7)
+        else:
+            time.sleep(0.4)
         try:
             #keyboardController = Controller()
             keyboardController.press(Key.ctrl.value)
@@ -91,7 +97,7 @@ def on_press(key):
                 return pasteFromFile()
 
 
-def main(readfile,writefile,hookline: ('search for occurence of string', 'option', 's'),delay: ('make a delay before using clipboard', 'flag', 'd')):
+def main(readfile,writefile,hookline: ('search for occurence of string', 'option', 's'),delay: ('make a bigger delay before using clipboard', 'flag', 'd')):
     "Insert line by line in a file from a GUI by just pressing a key (ESC exits everytime)"
     global Fto, hook, Ffrom, delayed
     Fto=open(writefile,"w")
