@@ -6,14 +6,19 @@ def main(site):
     "Get all redirect links to a series (still have to extract manually  fromAndTo is an good option for this)"
     base='https://s.to'
     if base in site:
-        site.replace(base,"")
-
+        site=site.replace(base,"")
+    if not site[-1]=="/":
+        site=site+"/"
+    #print(base)
+    #print(site)
+    
     browser = Browser(browser='firefox')
     browser.goto(base+site)
     html=browser.html
 
 
-    matches=re.findall(r'<a (?:class="active" )?href="('+site+r'staffel-\d+)" title="Staffel \d+">\d+</a>',html)
+    matches=re.findall('<a (?:class="active" )?href="('+site+r'staffel-\d+)" title="Staffel \d+">\d+</a>',html)
+    #print(matches)
     episodeRegex=re.compile(r'<a href="('+site+r'staffel-\d+/episode-\d+)" data-episode-id="\d*" title="Staffel \d+ Episode \d+" data-season-id="\d+">\d+</a>')
     allepisodes=list()
     for m in matches:
