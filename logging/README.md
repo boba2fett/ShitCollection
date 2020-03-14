@@ -1,4 +1,4 @@
-# ShitCollection/logging
+# logging
 
 What can be collected by javascript or php in the web?
 

@@ -1,0 +1,114 @@
+1583333951537	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilePDzz0D"
+1583333951821	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1583333952118	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1583333952118	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1583333952118	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1583333952118	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1583333953261	Marionette	INFO	Listening on port 33991
+1583333953342	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1583333967226	Marionette	INFO	Stopped listening on port 33991
+1583334007592	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilepYa4ZW"
+1583334007840	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1583334008118	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1583334008118	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1583334008118	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1583334008118	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1583334009225	Marionette	INFO	Listening on port 39529
+1583334009297	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+1583334010098	Marionette	INFO	Stopped listening on port 39529
+1583334219782	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileK0XThp"
+1583334219994	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1583334220231	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1583334220231	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1583334220231	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1583334220231	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1583334221313	Marionette	INFO	Listening on port 33147
+1583334221386	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+1583334222449	Marionette	INFO	Stopped listening on port 33147
+1583334335628	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileJfVOnl"
+1583334335843	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1583334336065	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1583334336066	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1583334336066	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1583334336066	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1583334337230	Marionette	INFO	Listening on port 34393
+1583334337236	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+1583334337962	Marionette	INFO	Stopped listening on port 34393
+1583334370884	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilePxE732"
+1583334371102	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1583334371375	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1583334371375	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1583334371375	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1583334371375	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1583334372593	Marionette	INFO	Listening on port 35819
+1583334372700	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+1583334373424	Marionette	INFO	Stopped listening on port 35819
+JavaScript error: resource://gre/modules/UrlClassifierListManager.jsm, line 680: TypeError: this.tablesData[table] is undefined
+1583334441314	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile90ZoMG"
+1583334441532	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1583334441832	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1583334441832	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1583334441832	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1583334441832	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1583334442979	Marionette	INFO	Listening on port 46329
+1583334443019	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+1583334444535	Marionette	INFO	Stopped listening on port 46329
+1583334670130	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileiJTCtU"
+1583334670346	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1583334670678	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1583334670678	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1583334670678	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1583334670678	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1583334671780	Marionette	INFO	Listening on port 38365
+1583334671834	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+1583334679695	Marionette	INFO	Stopped listening on port 38365
+1583334781992	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileG4NOlE"
+1583334782204	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1583334782483	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1583334782483	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1583334782483	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1583334782484	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1583334783598	Marionette	INFO	Listening on port 39171
+1583334783700	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+JavaScript warning: https://s.to/public/js/main.min.js?cache-version=c2f2c1bf10120f4a6af91497ef2c454b, line 1: unreachable code after return statement
+JavaScript error: resource:///actors/ContentMetaChild.jsm, line 167: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+1583334792304	Marionette	INFO	Stopped listening on port 39171
