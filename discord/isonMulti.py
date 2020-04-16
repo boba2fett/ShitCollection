@@ -14,7 +14,6 @@ registration_ids = [
 headers = {'User-Agent': 'Mozilla/51.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0'}
 names=sys.argv[1::]
 oldStates={name: False for name in names}
-print(oldStates)
 
 while True:
     try:
@@ -22,7 +21,6 @@ while True:
         dc = json.loads(dcData)
         on=[x['username'] for x in dc['members']]
         states={name: name in on for name in names}
-        print(states)
         for name in names:
             if states[name]!=oldStates[name]:
                 try:
