@@ -2,16 +2,18 @@
 from pynput import keyboard
 from pynput.keyboard import Key, Controller
 import pyperclip
-import sys
+import sys, os
 import time
 
 CRED = '\033[91m'
 CEND = '\033[0m'
 
+debug=False
 Fto=''
 Ffrom=''
 usekey=''
 last_line=''
+last_read=''
 pyperclip.copy('')
 hook=''
 delayed=False
@@ -26,18 +28,21 @@ def copyToFile():
         keyboardController.release('c')
         keyboardController.release(Key.ctrl.value)
         if delayed:
-            print('wait')
+            if debug:
+            	print('wait')
             time.sleep(0.7)
         else:
             time.sleep(0.4)
         pp=pyperclip.paste()
         if pp!=last_line and hook in pp:
-            print('Write: '+pp)
+            if debug:
+            	print('Write: '+pp)
             Fto.write(pp+'\n')
             last_line=pp
             return True
         else:
-            print('Same as last or '+hook+' not inside')
+            if debug:
+            	print('Same as last or '+hook+' not inside')
             return False
     except:
         print(CRED+'failed to press sth'+CEND)
@@ -47,17 +52,20 @@ def copyToFile():
 
 
 def pasteFromFile():
-    global Fto, Ffrom, delayed
+    global Fto, Ffrom, delayed, last_read
     line = Ffrom.readline()
     if not line:
         print('Reached EOF')
         Ffrom.close()
         return False
     else:
+        last_read=line
         pyperclip.copy(line.strip())
-        print('Read: '+pyperclip.paste())
+        if debug:
+        	print('Read: '+pyperclip.paste())
         if delayed:
-            print('wait')
+            if debug:
+            	print('wait')
             time.sleep(0.7)
         else:
             time.sleep(0.4)
@@ -78,17 +86,30 @@ def pasteFromFile():
         return True
 
 
+def stop():
+    global last_read, Fto, Ffrom
+    remaining=Ffrom.name+".remaining"
+    while os.path.isfile(remaining):
+        remaining+=".Kek"
+    Fremain=open(remaining,"w")
+    lines=Ffrom.readlines()
+    Fremain.write(last_read+''.join(lines))
+    Fremain.close()
+    Fto.close()
+    Ffrom.close()
+    print("Pressed Esc wrote remaining lines to: "+remaining)
+    return False
+
 def on_press(key):
     global usekey, last_line, Ffrom, Fto
     if key == Key.esc:
-        Fto.close()
-        Ffrom.close()
-        return False  # stop listener
+        return stop()# stop listener
     if usekey=='':# very first time
         usekey=key
         print('Will use: '+str(usekey))
     elif key==usekey:
-        print('UseKey pressed: ' + str(key))
+        if debug:
+        	print('UseKey pressed: ' + str(key))
         if pyperclip.paste()=='': # first time
             pasteFromFile()
             return not Ffrom.closed
@@ -97,12 +118,13 @@ def on_press(key):
                 return pasteFromFile()
 
 
-def main(readfile,writefile,hookline: ('search for occurence of string', 'option', 's'),delay: ('make a bigger delay before using clipboard', 'flag', 'd')):
+def main(readfile,writefile,hookline: ('search for occurence of string', 'option', 's'),delay: ('make a bigger delay before using clipboard', 'flag', 'd'),verbose: ('verbose output', 'flag', 'v')):
     "Insert line by line in a file from a GUI by just pressing a key (ESC exits everytime)"
-    global Fto, hook, Ffrom, delayed
+    global Fto, hook, Ffrom, delayed, debug
     Fto=open(writefile,"w")
     Ffrom=open(readfile,"r")
     hook=hookline
+    debug=verbose
     if not hook:
         hook=''
     delayed=delay
