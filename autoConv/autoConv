@@ -1,0 +1,8 @@
+#!/bin/bash
+find . -type f -execdir sh -c 'lowriter --convert-to pdf *.docx
+dia -t eps *.dia
+for f in *.eps
+do
+epstopdf "$f"
+done
+rm *.eps' {} \;
