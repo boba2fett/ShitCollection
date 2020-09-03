@@ -5,4 +5,8 @@ for f in *.eps
 do
 epstopdf "$f"
 done
-rm *.eps' {} \;
+rm *.eps
+for f in *.ppt
+do
+unoconv -f pdf "$f"
+done' {} \;
