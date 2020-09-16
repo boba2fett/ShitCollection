@@ -1,0 +1,15 @@
+[Unit]
+
+Description=descriptione
+
+After=multi-user.target
+
+[Service]
+
+Type=idle
+
+ExecStart=/usr/bin/python3 /home/pi/PiCube/Pattern1.py
+
+[Install]
+
+WantedBy=multi-user.target
