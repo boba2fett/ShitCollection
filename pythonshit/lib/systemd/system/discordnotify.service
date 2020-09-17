@@ -8,7 +8,7 @@ After=multi-user.target
 
 Type=idle
 
-ExecStart=/usr/local/bin/discordnotify
+ExecStart=/usr/local/bin/dcnotify
 
 [Install]
 

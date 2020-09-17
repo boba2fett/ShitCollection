@@ -150,7 +150,7 @@ def request(url, params):
 def gather_infos():  # every file of file-locations.txt until an empty line occurs
     log("getting most important information:")
     global target
-    f = open("file-locations.txt", "r")
+    f = open("/etc/python-shit/file-locations.txt", "r")
     while l := f.readline():
         if l := l.strip():
             advanced_download(l)
