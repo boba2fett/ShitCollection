@@ -26,7 +26,8 @@ try:
     names = config["names"]
     oldStates = {name: False for name in names}  # False means offline
 except Exception as e:
-    Exception(f"Error for Config file locatet at /etc/python-shit/discordnotify.json [{e}]")
+    Exception(
+        f"Error for Config file locatet at /etc/python-shit/discordnotify.json [{e}]")
     exit()
 
 
@@ -61,6 +62,7 @@ while True:
             log.warning(f'Error Message gesendet für [{str(e)}]')
 
         except Exception as e2:
-            log.error(f'Error Message failed because of [{str(e2)}] for [{str(e)}]')
+            log.error(
+                f'Error Message failed because of [{str(e2)}] for [{str(e)}]')
 
         time.sleep(600)
