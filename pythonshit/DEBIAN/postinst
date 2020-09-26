@@ -1,3 +1,3 @@
 #!/bin/bash
-python3 -m pip install -U colorama pyfcm
+python3 -m pip install -U colorama pyfcm sqlalchemy sqlite3
 systemctl daemon-reload

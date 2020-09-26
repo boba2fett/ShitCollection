@@ -9,5 +9,6 @@
     [
         "DlieBG",
         "currysor"
-    ]
+    ],
+    "dbcollect":true
 }
