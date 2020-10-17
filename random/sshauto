@@ -1,0 +1,7 @@
+#!/usr/bin/expect -f
+spawn ssh pi@servr "troll"
+expect "assword:"
+send "nccIX9\r"
+send "export DISPLAY=:0.0"
+send "oneko"
+interact
