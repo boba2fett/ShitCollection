@@ -58,7 +58,7 @@ try:
                 if len(parts)>1:
                     nachname=' '.join(parts[1:])
                     vorname=parts[0]
-                    if answ:=input(f"Insert Name '{name}', Vorname '{vorname}'? ").strip():
+                    if answ:=input(f"Insert Name '{nachname}', Vorname '{vorname}'? ").strip():
                         exQuery(f"INSERT INTO `Name` (`NameNr`, `Person`, `Startdatum`, `Enddatum`, `Name`, `Vorname`, `Bemerkung`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL), (NULL, '{persnr}', NULL, NULL, '{nachname}', '{vorname}', NULL);")
                 for category in desired_categories:
                     try:
