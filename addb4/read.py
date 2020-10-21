@@ -51,19 +51,20 @@ print("\nenter is No\nAny char and enter is a Yes\n")
 try:
     for contact in parse_sequent("Kontakte.vcf"):
         for name in contact:
+            name=name.replace("  "," ").replace("  "," ")
             if answ:=input(f"Insert Name '{name}' ? ").strip():
-                exQuery(f"INSERT INTO `Person`  (`PersonNr`,    `Bezeichnung`,  `Geburtsdatum`, `Geburtsort`,   `Geschlecht`,   `Staatsangehoerigkeit`, `Augenfarbe`,   `Hautfarbe`,    `PersonalausweisNr`,    `Mutter`,   `Vater`) VALUES (NULL, '{name}', NULL, NULL, NULL, 'deutsch', NULL, 'hell', NULL, NULL, NULL);")
+                exQuery(f"INSERT INTO `Person` (`PersonNr`,`Bezeichnung`,`Geburtsdatum`,`Geburtsort`,`Geschlecht`,`Staatsangehoerigkeit`,`Augenfarbe`,`Hautfarbe`,`PersonalausweisNr`,`Mutter`,`Vater`) VALUES ('{persnr}','{name}', NULL, NULL, NULL, 'deutsch', NULL, 'hell', NULL, NULL, NULL);")
                 #persnr=exQuery(f"SELECT MAX(PersonNr) FROM Person WHERE Bezeichnung='{name}';")
                 parts=name.split(' ')
                 if len(parts)>1:
                     nachname=' '.join(parts[1:])
                     vorname=parts[0]
                     if answ:=input(f"Insert Name '{nachname}', Vorname '{vorname}'? ").strip():
-                        exQuery(f"INSERT INTO `Name` (`NameNr`, `Person`, `Startdatum`, `Enddatum`, `Name`, `Vorname`, `Bemerkung`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL), (NULL, '{persnr}', NULL, NULL, '{nachname}', '{vorname}', NULL);")
+                        exQuery(f"INSERT INTO `Name` (`NameNr`, `Person`, `Startdatum`, `Enddatum`, `Name`, `Vorname`, `Bemerkung`) VALUES (NULL, '{persnr}', NULL, NULL, '{nachname}', '{vorname}', NULL);")
                 for category in desired_categories:
                     try:
                         for val in contact[name][category]:
-                            if answ:=input(f"Insert Value '{val}' in category '{category} for '{name}' ?").strip():
+                            if answ:=input(f"Insert Value '{val}' in category '{category}' for '{name}' ?").strip():
                                 exQuery(f"INSERT INTO `Kontaktinfo` (`KontaktinfoNr`, `Person`, `Name`, `Bemerkung`) VALUES (NULL, '{persnr}', '{category}', '{val}');")
                     except:
                         pass
