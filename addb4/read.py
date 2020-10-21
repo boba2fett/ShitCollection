@@ -28,19 +28,48 @@ def ensure_parsable(path):
         print(lastContact)
         exit(1)
 
+allq=""
+
 def exQuery(q): # hier anpassen XD
-    print(q)
+    global allq
+    #print(q)
+    allq+=f"{q}\n"
     return 0
 
 ensure_parsable("Kontakte.vcf")
 
-for contact in parse_sequent("Kontakte.vcf"):
-    for name in contact:
-        exQuery(f"INSERT INTO `Person`  (`PersonNr`,    `Bezeichnung`,  `Geburtsdatum`, `Geburtsort`,   `Geschlecht`,   `Staatsangehoerigkeit`, `Augenfarbe`,   `Hautfarbe`,    `PersonalausweisNr`,    `Mutter`,   `Vater`) VALUES (NULL, '{name}', NULL, NULL, NULL, 'deutsch', NULL, 'hell', NULL, NULL, NULL);")
-        persnr=exQuery(f"SELECT MAX(PersonNr) FROM Person WHERE Bezeichnung='{name}';")
-        for category in desired_categories:
-            try:
-                for val in contact[name][category]:
-                    exQuery(f"INSERT INTO `Kontaktinfo` (`KontaktinfoNr`, `Person`, `Name`, `Bemerkung`) VALUES (NULL, '{persnr}', '{category}', '{val}');")
-            except:
-                pass
+persnr=1000
+startNum=input("Start Number: ")
+try:
+    startNum=int(startNum)
+except:
+    print("No number")
+    exit(1)
+
+print("\nenter is No\nAny char and enter is a Yes\n")
+
+try:
+    for contact in parse_sequent("Kontakte.vcf"):
+        for name in contact:
+            if answ:=input(f"Insert Name '{name}' ? ").strip():
+                exQuery(f"INSERT INTO `Person`  (`PersonNr`,    `Bezeichnung`,  `Geburtsdatum`, `Geburtsort`,   `Geschlecht`,   `Staatsangehoerigkeit`, `Augenfarbe`,   `Hautfarbe`,    `PersonalausweisNr`,    `Mutter`,   `Vater`) VALUES (NULL, '{name}', NULL, NULL, NULL, 'deutsch', NULL, 'hell', NULL, NULL, NULL);")
+                #persnr=exQuery(f"SELECT MAX(PersonNr) FROM Person WHERE Bezeichnung='{name}';")
+                parts=name.split(' ')
+                if len(parts)>1:
+                    nachname=' '.join(parts[1:])
+                    vorname=parts[0]
+                    if answ:=input(f"Insert Name '{name}', Vorname '{vorname}'? ").strip():
+                        exQuery(f"INSERT INTO `Name` (`NameNr`, `Person`, `Startdatum`, `Enddatum`, `Name`, `Vorname`, `Bemerkung`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL), (NULL, '{persnr}', NULL, NULL, '{nachname}', '{vorname}', NULL);")
+                for category in desired_categories:
+                    try:
+                        for val in contact[name][category]:
+                            if answ:=input(f"Insert Value '{val}' in category '{category} for '{name}' ?").strip():
+                                exQuery(f"INSERT INTO `Kontaktinfo` (`KontaktinfoNr`, `Person`, `Name`, `Bemerkung`) VALUES (NULL, '{persnr}', '{category}', '{val}');")
+                    except:
+                        pass
+                persnr+=1
+            print("")
+except KeyboardInterrupt:
+    print("abgebrochen")
+print("-------------------------------\n")
+print(allq)
