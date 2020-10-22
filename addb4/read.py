@@ -46,14 +46,17 @@ except:
     print("No number")
     exit(1)
 
-print("\nenter is No\nAny char and enter is a Yes\n")
+print("\nenter is No\nAny char and enter is a Yes\npersons can have w or m for gender\n")
 
 try:
     for contact in parse_sequent("Kontakte.vcf"):
         for name in contact:
             name=name.replace("  "," ").replace("  "," ")
-            if answ:=input(f"Insert Name '{name}' ? ").strip():
-                exQuery(f"INSERT INTO `Person` (`PersonNr`,`Bezeichnung`,`Geburtsdatum`,`Geburtsort`,`Geschlecht`,`Staatsangehoerigkeit`,`Augenfarbe`,`Hautfarbe`,`PersonalausweisNr`,`Mutter`,`Vater`) VALUES ('{persnr}','{name}', NULL, NULL, NULL, 'deutsch', NULL, 'hell', NULL, NULL, NULL);")
+            if answ:=input(f"Insert Name '{name}' ? ").strip().lower():
+                geschlecht="NULL"
+                if answ=='m' or answ=='w':
+                    geschlecht=f"'{answ}'"
+                exQuery(f"INSERT INTO `Person` (`PersonNr`,`Bezeichnung`,`Geburtsdatum`,`Geburtsort`,`Geschlecht`,`Staatsangehoerigkeit`,`Augenfarbe`,`Hautfarbe`,`PersonalausweisNr`,`Mutter`,`Vater`) VALUES ('{persnr}','{name}', NULL, NULL, {geschlecht}, 'deutsch', NULL, 'hell', NULL, NULL, NULL);")
                 #persnr=exQuery(f"SELECT MAX(PersonNr) FROM Person WHERE Bezeichnung='{name}';")
                 parts=name.split(' ')
                 if len(parts)>1:
