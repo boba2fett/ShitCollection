@@ -41,7 +41,7 @@ ensure_parsable("Kontakte.vcf")
 persnr=1000
 startNum=input("Start Number: ")
 try:
-    startNum=int(startNum)
+    persnr=int(startNum)
 except:
     print("No number")
     exit(1)
