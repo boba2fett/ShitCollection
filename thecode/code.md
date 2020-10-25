@@ -43,5 +43,7 @@
 41. Do not choose for others, consult
 42. Wounds heal scars stay
 43. Legends never die
+44. Crap in crap out
+45. Do not demand control, gain it
 
 **This is the way**

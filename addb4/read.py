@@ -38,7 +38,7 @@ def exQuery(q): # hier anpassen XD
 
 ensure_parsable("Kontakte.vcf")
 
-persnr=1000
+persnr=None
 startNum=input("Start Number: ")
 try:
     persnr=int(startNum)

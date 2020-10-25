@@ -42,7 +42,7 @@ for category in katalog:
 
         for book in books:
             browser.goto(BASE+book)
-            #browser.button(value='Download').click()
+            browser.button(value='Download').click()
             #print(book)
             dic[book.replace("/product/","")]=re.findall(r'<h1 class="mb-3">([\w\/\- \(\)]*)</h1>',browser.html)[0]
 
