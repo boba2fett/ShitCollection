@@ -1,0 +1,4 @@
+#!/bin/bash
+mv pythonshit/etc/python-shit/dcdata.db dcdata.db
+dpkg-deb --build pythonshit/
+mv dcdata.db pythonshit/etc/python-shit/dcdata.db
