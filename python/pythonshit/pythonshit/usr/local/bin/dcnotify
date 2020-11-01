@@ -15,7 +15,7 @@ log = logging.getLogger("dcnotify")
 log.addHandler(JournalHandler())
 log.setLevel(logging.INFO)
 
-PRE_PATH = ""#"/home/bf/git/ShitCollection/python/pythonshit"
+PRE_PATH = ""#"/home/bf/git/ShitCollection/python/pythonshit/pythonshit"
 
 
 with open(PRE_PATH+'/etc/python-shit/discordnotify.json', 'r') as json_file:
@@ -57,9 +57,10 @@ def mainloop():
     while True:
         try:
             data = parseData(loadNewData())
-            time=datetime.datetime.now() # everyone gets same time
+            timestamp=datetime.datetime.now() # everyone gets same time
             sendOnlineMessages(data,lastData)
-            dbCollect(data,time)
+            dbCollect(data,timestamp)
+            dbSend(data)
             time.sleep(290) # about every 5 min
         except Exception as e:
             sendError(e)
@@ -133,24 +134,25 @@ def dbCollect(data,time):
                 )
             )
         except Exception as e:
-            sendError(Exception("DataCollection unsuccesful"))
+            sendError(Exception(f"DataCollection unsuccesful, because of {str(e)}"))
 
 def dbSend(data):
-    for member in data:
-        try:
-            if requests.get(config["log_server"], headers=headers, params=
-            {
+    try:
+        for member in data:
+            req=requests.get(config["log_server"], headers=headers, params=
+                {
                     "t":config["log_server_token"],
                     "username": member["username"],
                     "status": member["status"],
                     "channel_id": member["channel_id"],
                     "deaf": member["deaf"],
                     "mute": member["mute"]
-            }
-            ).status_code != 200:
-                raise Exception("LogServer was not reached")
-        except Exception as e:
-            sendError(Exception("LogServer was not reached"))
+                }
+            )
+            if req.status_code != 200:
+                raise Exception(f"No 200 return Code, actual: {req.status_code}")
+    except Exception as e:
+            sendError(Exception(f"LogServer was not reached: {str(e)}"))
 
 
 def sendError(e):
