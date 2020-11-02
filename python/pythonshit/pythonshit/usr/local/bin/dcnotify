@@ -15,7 +15,7 @@ log = logging.getLogger("dcnotify")
 log.addHandler(JournalHandler())
 log.setLevel(logging.INFO)
 
-PRE_PATH = "/home/bf/git/ShitCollection/python/pythonshit/pythonshit"
+PRE_PATH = ""#"/home/bf/git/ShitCollection/python/pythonshit/pythonshit"
 
 
 with open(PRE_PATH+'/etc/python-shit/discordnotify.json', 'r') as json_file:
