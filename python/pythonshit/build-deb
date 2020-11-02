@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "mv fails can be ignored it's just for not building the db into the deb package"
 echo ""
-prod_prod=false
+prod_prod=true
 if grep -q 'PRE_PATH = ""' pythonshit/usr/local/bin/dcnotify
 then
     mv pythonshit/etc/python-shit/dcdata.db dcdata.db
