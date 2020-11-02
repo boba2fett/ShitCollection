@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "mv fails can be ignored it's just for not building the db into the deb package"
 echo ""
-prod_prod=true
+prod_prod=false
 if grep -q 'PRE_PATH = ""' pythonshit/usr/local/bin/dcnotify
 then
     mv pythonshit/etc/python-shit/dcdata.db dcdata.db
@@ -13,18 +13,18 @@ then
             echo "explicit building with template version"
             echo ""
             mv pythonshit/etc/python-shit/discordnotify.json discordnotify.json
-            dpkg-deb --build pythonshit/
+            dpkg-deb --build pythonshit/ pythonshit.deb
             mv discordnotify.json pythonshit/etc/python-shit/discordnotify.json
         else
             echo "building with local version do NOT push this"
             echo ""
             mv pythonshit/etc/python-shit/discordnotify.json.template discordnotify.json.template
-            dpkg-deb --build pythonshit/
+            dpkg-deb --build pythonshit/ pythonshitPROD.deb
             mv discordnotify.json.template pythonshit/etc/python-shit/discordnotify.json.template
         fi
     else
         mv pythonshit/etc/python-shit/discordnotify.json.template pythonshit/etc/python-shit/discordnotify.json
-        dpkg-deb --build pythonshit/
+        dpkg-deb --build pythonshit/ pythonshit.deb
         mv pythonshit/etc/python-shit/discordnotify.json pythonshit/etc/python-shit/discordnotify.json.template
     fi
     
