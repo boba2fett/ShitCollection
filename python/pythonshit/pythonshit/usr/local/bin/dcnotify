@@ -15,7 +15,7 @@ log = logging.getLogger("dcnotify")
 log.addHandler(JournalHandler())
 log.setLevel(logging.INFO)
 
-PRE_PATH = ""#"/home/bf/git/ShitCollection/python/pythonshit/pythonshit"
+PRE_PATH = "/home/bf/git/ShitCollection/python/pythonshit/pythonshit"
 
 
 with open(PRE_PATH+'/etc/python-shit/discordnotify.json', 'r') as json_file:
@@ -167,7 +167,12 @@ def sendError(e):
         log.error(
             f'Error Message failed because of [{str(e2)}] for [{str(e)}]')
 
-
-req=conn.execute(dcOn.select().where(dcOn.c.username=="DlieBG").order_by(dcOn.c.timestamp.desc())).first()
-sendError(Exception(f"Started, db seems to work, DlieBGs last entry is from: {req['timestamp']}"))
+try:
+    req=conn.execute(dcOn.select().where(dcOn.c.username=="DlieBG").order_by(dcOn.c.timestamp.desc())).first()
+    if req is None:
+        sendError(Exception(f"Started, db seems to work, no last entry for DlieBG found"))
+    else:
+        sendError(Exception(f"Started, db seems to work, DlieBGs last entry is from: {req['timestamp']}"))
+except Exception as e:
+    sendError(Exception(f"Started, db doesn't seem to work: {e}"))
 mainloop()
