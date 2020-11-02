@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "mv fails can be ignored it's just for not building the db into the deb package"
 echo ""
-if grep -q 'PRE_PATH = ""' pythonshit/usr/local/bin/dcnotify
+if grep -q 'PRE_PATH = ""' pythonshit/usr/local/bin/dcnotify pythonshit/usr/local/bin/dcshowon
 then
     mv pythonshit/etc/python-shit/dcdata.db dcdata.db
     FILE=pythonshit/etc/python-shit/discordnotify.json
