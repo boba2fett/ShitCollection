@@ -48,23 +48,23 @@ Column('mute', Boolean),
 )
 meta.create_all(engine)
 
-#req=conn.execute(dcOn.select().where(dcOn.c.username=="DlieBG").order_by(dcOn.c.timestamp.desc())).first()
-#print(req['status'])
-
 
 def mainloop():
     lastData=None
     while True:
         try:
+            currtime=time.time()
+            distance=300 - currtime % 300
+            alligned_time=currtime+distance
+            time.sleep(distance) # wait to the next 5 min
+            timestamp=datetime.datetime.fromtimestamp(int(alligned_time)) # everyone gets same 5min alligned time
             data = parseData(loadNewData())
-            timestamp=datetime.datetime.now() # everyone gets same time
             sendOnlineMessages(data,lastData)
             dbCollect(data,timestamp)
             dbSend(data)
-            time.sleep(290) # about every 5 min
         except Exception as e:
-            sendError(e)
-            time.sleep(590) # about 10 min
+            sendError(f"Fail in Mainloop pending 290s: {e}")
+            time.sleep(290)
         finally:
             try:
                 lastData=data
@@ -72,7 +72,7 @@ def mainloop():
                 lastData=None
 
 def parseData(data):
-    data=[x for x in data if not x['username'] in ignore]
+    data=[x for x in data if (not x['username'] in ignore) or (not x.get('channel_id') is None)]
     for member in data:
         if member.get('channel_id') is None:
             member['channel_id']=None
@@ -88,7 +88,7 @@ def loadNewData():
         dcData = requests.get(
             config["server"], headers=headers).text  # link is under server settings widgets or similar
     except Exception as e:
-        raise Exception("Server not Reachable")
+        raise Exception(f"Server not Reachable: {e}")
     dc = json.loads(dcData)
     if (dc.get('members') is None):
         raise Exception("Ratelimited")
@@ -112,7 +112,7 @@ def sendOnlineMessages(data,lastData):
 
 def sendOnlineMsg(name,status):
     try:
-        message_title = f'[{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}]'
+        message_title = f'{datetime.datetime.now()}'
         message_body = f'{name} now {status}'
         push_service.notify_multiple_devices(
             registration_ids=registration_ids, message_title=message_title, message_body=message_body)
@@ -157,7 +157,7 @@ def dbSend(data):
 
 def sendError(e):
     try:
-        message_title = f'[{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}]'
+        message_title = f'{datetime.datetime.now()}'
         message_body = str(e)
         push_service.notify_multiple_devices(
             registration_ids=registration_ids, message_title=message_title, message_body=message_body)
@@ -168,4 +168,6 @@ def sendError(e):
             f'Error Message failed because of [{str(e2)}] for [{str(e)}]')
 
 
+req=conn.execute(dcOn.select().where(dcOn.c.username=="DlieBG").order_by(dcOn.c.timestamp.desc())).first()
+sendError(Exception(f"Started, db seems to work, DlieBGs last entry is from: {req['timestamp']}"))
 mainloop()
