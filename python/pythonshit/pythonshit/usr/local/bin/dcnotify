@@ -105,7 +105,7 @@ def sendOnlineMessages(data,lastData):
     for member in on:
         try:
             req=conn.execute(dcOn.select().where(dcOn.c.username==member["username"]).order_by(dcOn.c.timestamp.desc())).first()
-            if req["status"] != member["status"] or lastData is None or member["username"] not in [x['username'] for x in lastData]:
+            if lastData is None or member["username"] not in [x['username'] for x in lastData] or req["status"] != member["status"]:
                 sendOnlineMsg(member["username"],member["status"])
         except Exception as e:
             log.error(f'Online Message failed because of [{str(e)}]')

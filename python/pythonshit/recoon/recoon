@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+import requests
+import time
+import json
+import os
+import sys
+import datetime
+from systemd.journal import JournalHandler
+from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, DateTime, Boolean
+from sqlalchemy.sql import func
+
+#import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.dates as dates
+
+
+engine = create_engine('sqlite:///dcdata.db')
+meta = MetaData()
+conn = engine.connect()
+
+dcOn = Table(
+'dcOn', meta,
+Column('timestamp', DateTime(timezone=True)),
+Column('username', String),
+Column('status', String),
+Column('channel_id', String),
+Column('deaf', Boolean),
+Column('mute', Boolean),
+)
+meta.create_all(engine)
+
+def total_per_user_per_time():
+    fig = plt.figure()
+    ax1 = fig.add_subplot(2,1,1)
+
+    users=list(conn.execute("SELECT DISTINCT username FROM dcOn"))
+    times=list(conn.execute("SELECT DISTINCT time(timestamp) FROM dcOn ORDER BY time(timestamp)"))
+    for user in [x[0] for x in users]:
+        datax=list()
+        datay=list()
+        for time in [x[0] for x in times]:
+            res=list(conn.execute(f'SELECT COUNT(*) FROM dcOn WHERE username = "{user}" AND time(timestamp)="{time}"'))
+            h,m,_=time.split(":")
+            t=datetime.datetime(year=1970,month=1,day=1,hour=int(h),minute=int(m))
+            datax+=[t]
+            datay+=res[0]
+        datax = dates.date2num(datax)
+        ax1.plot(datax,datay,label=user,linewidth=1)
+
+    plt.xticks([datetime.datetime(year=1970,month=1,day=1,hour=h)for h in range (0,24)])
+    myFmt = dates.DateFormatter('%H:%M')
+    plt.gca().xaxis.set_major_formatter(myFmt)
+    plt.legend(loc="upper left")
+
+    plt.show()
+
+def percentage_per_user_per_time():
+    fig = plt.figure()
+    ax1 = fig.add_subplot(2,1,1)
+
+    users=list(conn.execute("SELECT DISTINCT username FROM dcOn"))
+    times=list(conn.execute("SELECT DISTINCT time(timestamp) FROM dcOn ORDER BY time(timestamp)"))
+    for user in [x[0] for x in users]:
+        res=list(conn.execute(f'SELECT COUNT(*) FROM dcOn WHERE username = "{user}"'))
+        total=float(res[0][0])
+        datax=list()
+        datay=list()
+        for time in [x[0] for x in times]:
+            res=list(conn.execute(f'SELECT COUNT(*) FROM dcOn WHERE username = "{user}" AND time(timestamp)="{time}"'))
+            h,m,_=time.split(":")
+            t=datetime.datetime(year=1970,month=1,day=1,hour=int(h),minute=int(m))
+            datax+=[t]
+            datay+=res[0]
+        datax = dates.date2num(datax)
+        if total>0:
+            ax1.plot(datax,[x/total for x in datay],label=user,linewidth=1)
+
+    plt.xticks([datetime.datetime(year=1970,month=1,day=1,hour=h)for h in range (0,24)])
+    myFmt = dates.DateFormatter('%H:%M')
+    plt.gca().xaxis.set_major_formatter(myFmt)
+    plt.legend(loc="upper left")
+
+    plt.show()
+
+def total_per_time():
+    fig = plt.figure()
+    ax1 = fig.add_subplot(2,1,1)
+
+    times=list(conn.execute("SELECT DISTINCT time(timestamp) FROM dcOn ORDER BY time(timestamp)"))
+    datax=list()
+    datay=list()
+    for time in [x[0] for x in times]:
+        res=list(conn.execute(f'SELECT COUNT(*) FROM dcOn WHERE time(timestamp)="{time}"'))
+        h,m,_=time.split(":")
+        t=datetime.datetime(year=1970,month=1,day=1,hour=int(h),minute=int(m))
+        datax+=[t]
+        datay+=res[0]
+    datax = dates.date2num(datax)
+    ax1.plot(datax,datay,label="Total",linewidth=1)
+
+    plt.xticks([datetime.datetime(year=1970,month=1,day=1,hour=h)for h in range (0,24)])
+    myFmt = dates.DateFormatter('%H:%M')
+    plt.gca().xaxis.set_major_formatter(myFmt)
+    plt.legend(loc="upper left")
+
+    plt.show()
+
+total_per_user_per_time()
+percentage_per_user_per_time()
+total_per_time()
