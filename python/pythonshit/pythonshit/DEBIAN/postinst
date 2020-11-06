@@ -5,5 +5,5 @@ DB=dcdata.db
 if [ -f "$DB" ]
 then
     echo "restore dcdata.db"
-    mv DB /etc/python-shit/dcdata.db
+    mv $DB /etc/python-shit/dcdata.db
 fi
