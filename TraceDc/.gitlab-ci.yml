@@ -10,7 +10,7 @@ before_script:
 build:
   stage: build
   script:
-    - "cd BugTracker"
+    - "cd TraceDC"
     - "dotnet build"
 
 test:
