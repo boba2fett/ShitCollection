@@ -1,0 +1,31 @@
+{
+
+  "description": "Adds a browser action icon to the toolbar.",
+  "manifest_version": 2,
+  "name": "Executo2",
+  "version": "1.0",
+  "homepage_url": "https://b2f.ddnss.org/",
+  "icons": {
+    "48": "icons/48.png"
+  },
+
+  "permissions": [
+    "activeTab"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/32.png",
+    "theme_icons": [{
+        "light": "icons/32-light.png",
+        "dark": "icons/32.png",
+        "size": 32
+    }],
+    "default_title": "Executor",
+    "default_popup": "popup/choose_action.html"
+  },
+
+  "web_accessible_resources": [
+    "res/*"
+  ]
+
+}

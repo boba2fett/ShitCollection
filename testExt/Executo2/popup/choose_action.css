@@ -1,0 +1,33 @@
+html, body {
+  width: 100px;
+  background-color: black;
+  color: #a4c9ae;
+}
+
+.hidden {
+  display: none;
+}
+
+.button {
+  margin: 3% auto;
+  padding: 4px;
+  text-align: center;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.action:hover {
+  background-color: #1f2533;
+}
+
+.action {
+  background-color:#12151d;
+}
+
+.reset {
+  background-color: #2e374e;
+}
+
+.reset:hover {
+  background-color: #1f2533;
+}
