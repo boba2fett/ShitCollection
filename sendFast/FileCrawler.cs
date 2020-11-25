@@ -38,6 +38,7 @@ namespace send
                 Console.WriteLine($"{dc.Email}:{dc.Password}");
                 Crawl(dc);
             }
+            _dbw.Save();
             dc=_dbw.Latest();
             var timeEnd=DateTime.Now;
             var idEnd=dc.Id;
@@ -99,7 +100,7 @@ namespace send
             }
             catch(Exception e)
             {
-                Console.WriteLine($"Error Crwling: {e}");
+                Console.WriteLine($"Error Crawling: {e}");
             }
         }
 
@@ -107,12 +108,20 @@ namespace send
         {
             using(System.IO.StreamReader file = new System.IO.StreamReader(filePath))
             {
+                int count=0;
                 string line;
                 while((line = file.ReadLine()) != null&&!_canceled)  
                 {
+                    if(count==1000)
+                    {
+                        _dbw.Save();
+                        count=0;
+                    }
                     ProcessLine(line);
+                    count++;
                 }
                 file.Close();
+                _dbw.Save();
             }
             if(!_canceled)
             {
@@ -124,12 +133,19 @@ namespace send
         {
             using(System.IO.StreamReader file = new System.IO.StreamReader(filePath))
             {
+                int count=0;
                 string line;
                 while((line = file.ReadLine()) != null && !_canceled)
                 {
                     if(_found)
                     {
+                        if(count==1000)
+                        {
+                            _dbw.Save();
+                            count=0;
+                        }
                         ProcessLine(line);
+                        count++;
                     }
                     if(line.StartsWith(dc.Email)&&line.EndsWith(dc.Password))
                     {
@@ -138,6 +154,7 @@ namespace send
                     }
                 }
                 file.Close();
+                _dbw.Save();
             }
             if(!_canceled)
             {

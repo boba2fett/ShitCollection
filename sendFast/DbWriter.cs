@@ -26,29 +26,25 @@ namespace send
 
     class DbWriter
     {
+        private DataContext _dc=new DataContext();
         public DbWriter()
         {
             try{
-                using(DataContext dc=new DataContext())
-                {
-                    dc.Database.Migrate();
-                }
+                _dc.Database.Migrate();
             }
             catch(Exception ex)
             {
                 Console.WriteLine($"Probably hramless, because Database is already created: {ex}");
             }
         }
+
         public bool Insert(string email, string pwd)
         {
             try
             {
-                using(DataContext dc=new DataContext())
-                {
-                    dc.Add(new DataColl{ Email=email,Password=pwd });
-                    dc.SaveChanges();
-                    return true;
-                }
+                _dc.Add(new DataColl{ Email=email,Password=pwd });
+                
+                return true;
             }
             catch(Exception e)
             {
@@ -57,16 +53,32 @@ namespace send
             }
         }
 
+        public bool Save()
+        {
+            try{
+                _dc.SaveChanges();
+                return true;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine($"Error getting Last: {e}");
+            }
+            return false;
+        }
+
         public DataColl Latest()
         {
-            using(DataContext dc=new DataContext())
-            {
-                var result = dc.Data.OrderByDescending(b => b.Id);
+            try{
+                var result = _dc.Data.OrderByDescending(b => b.Id);
                 if(result.Any())
                 {
                     Console.WriteLine("Database Queryable");
                     return result.First();
                 }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine($"Error getting Last: {e}");
             }
             return null;
         }
