@@ -9,6 +9,8 @@ html, body {
 }
 
 .button {
+  flex: 0 1 auto;
+  height: 25%;
   margin: 3% auto;
   padding: 4px;
   text-align: center;

@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "MyExtension",
+    "version": "1.0",
+  
+    "description": "",
+    "homepage_url": "https://b2f.ddnss.org",
+  
+    "icons": {
+      "48": "icons/border-48.png"
+    },
+  
+    "content_scripts": [
+      {
+        "matches": ["*://*.b2f.ddnss.org/*"],
+        "js": ["myext.js"]
+      }
+    ]
+  
+  }

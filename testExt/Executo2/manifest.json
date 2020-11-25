@@ -10,7 +10,10 @@
   },
 
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "webRequest",
+    "webRequestBlocking",
+    "storage"
   ],
 
   "browser_action": {
@@ -22,6 +25,12 @@
     }],
     "default_title": "Executor",
     "default_popup": "popup/choose_action.html"
+  },
+  "options_ui": {
+		"page": "options/options.html"
+  },
+  "background": {
+    "scripts": ["storage.js"]
   },
 
   "web_accessible_resources": [

@@ -17,6 +17,10 @@
           inputs[i].style.width="100%";
       }
     }
+    if(action==="do")
+    {
+      console.log("Yeet")
+    }
   }
 
   function reset() {

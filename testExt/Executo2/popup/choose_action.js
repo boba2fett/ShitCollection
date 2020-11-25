@@ -10,15 +10,13 @@ function listenForClicks() {
     }
 
     function reset(tabs) {
-      browser.tabs.removeCSS({code: hidePage}).then(() => {
-        browser.tabs.sendMessage(tabs[0].id, {
+      browser.tabs.sendMessage(tabs[0].id, {
           command: "reset",
         });
-      });
     }
 
     function reportError(error) {
-      console.error(`Could not beastify: ${error}`);
+      console.error(`Error: ${error}`);
     }
 
     if (e.target.classList.contains("action")) {
@@ -38,6 +36,13 @@ function reportExecuteScriptError(error) {
   document.querySelector("#error-content").classList.remove("hidden");
   console.error(`Failed to execute execute content script: ${error.message}`);
 }
+
+function updatePopup(restoredSettings) {
+  document.querySelector("#stored").innerHTML = restoredSettings.stored.text || "";
+}
+
+const gettingStoredSettings = browser.storage.local.get();
+gettingStoredSettings.then(updatePopup, reportExecuteScriptError);
 
 browser.tabs.executeScript({file: "/content_scripts/execute.js"})
 .then(listenForClicks)
