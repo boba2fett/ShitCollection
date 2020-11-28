@@ -12,7 +12,8 @@ namespace send.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    User = table.Column<string>(type: "TEXT", nullable: true),
+                    Domain = table.Column<string>(type: "TEXT", nullable: true),
                     Password = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>

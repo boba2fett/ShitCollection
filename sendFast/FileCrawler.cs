@@ -35,7 +35,7 @@ namespace send
                 idStart=dc.Id;
                 Console.WriteLine($"Last Id = {idStart}");
                 Console.WriteLine($"Time = {timeStart}");
-                Console.WriteLine($"{dc.Email}:{dc.Password}");
+                Console.WriteLine($"{dc.User}@{dc.Domain}:{dc.Password}");
                 Crawl(dc);
             }
             _dbw.Save();
@@ -53,7 +53,7 @@ namespace send
         }
         public void Crawl()
         {
-            foreach(var file in Directory.GetFiles(@"/media/bf/Elements SE/REALdata/tr/BreachCompilation/data/","*", SearchOption.AllDirectories)) if (!_canceled)
+            foreach(var file in Directory.GetFiles(Config.Data,"*", SearchOption.AllDirectories)) if (!_canceled)
             {
                 Process(file);
             }
@@ -62,7 +62,7 @@ namespace send
         public void Crawl(DataColl dc)
         {
             try{
-                foreach(var file in Directory.GetFiles(@"/media/bf/Elements SE/REALdata/tr/BreachCompilation/data/","*", SearchOption.AllDirectories)) if (!_canceled)
+                foreach(var file in Directory.GetFiles(Config.Data,"*", SearchOption.AllDirectories)) if (!_canceled)
                 {
                     if(!_found)
                     {
@@ -70,9 +70,9 @@ namespace send
                         var filename=file;
                         if(!filename.Contains("symbols"))
                         {
-                            filename=filename.Remove(0,@"/media/bf/Elements SE/REALdata/tr/BreachCompilation/data/".Length);
+                            filename=filename.Remove(0,Config.Data.Length);
                             filename=filename.Replace("/",string.Empty);
-                            if(dc.Email.ToLower().StartsWith(filename))
+                            if(dc.User.ToLower().StartsWith(filename))
                             {
                                 Console.WriteLine(file);
                                 Process(file,dc);
@@ -81,10 +81,10 @@ namespace send
                         else
                         {
                             filename=filename.Replace("symbols","[^a-z0-9]");
-                            filename=filename.Remove(0,@"/media/bf/Elements SE/REALdata/tr/BreachCompilation/data/".Length);
+                            filename=filename.Remove(0,Config.Data.Length);
                             filename=filename.Replace("/",string.Empty);
                             Regex rgx = new Regex("^"+filename, RegexOptions.IgnoreCase);
-                            MatchCollection matches = rgx.Matches(dc.Email);
+                            MatchCollection matches = rgx.Matches(dc.User);
                             if (matches.Count > 0)
                             {
                                 Console.WriteLine(file);
@@ -147,7 +147,7 @@ namespace send
                         ProcessLine(line);
                         count++;
                     }
-                    if(line.StartsWith(dc.Email)&&line.EndsWith(dc.Password))
+                    if(line.StartsWith(dc.User)&&line.EndsWith(dc.Password))
                     {
                         Console.WriteLine("Found");
                         _found=true;
@@ -164,27 +164,33 @@ namespace send
 
         public void ProcessLine(string line)
         {
-            int indx=line.IndexOf(":");
-            if(indx==-1)
-            {
-                indx=line.IndexOf(";");
-                if(indx==-1)
-                {
-                    indx=line.IndexOf("\t");
-                    if(indx==-1)
-                    {
-                        indx=line.IndexOf("|");
-                    }
-                }
-            }
-            if(indx==-1)
+            int emailSeperator=line.IndexOf("@");
+            if(emailSeperator==-1)
             {
                 ProblemForLater(line);
                 return;
             }
-            string email=line.Substring(0,indx);
-            string pwd=line.Substring(indx+1);
-            if(!_dbw.Insert(email,pwd))
+            int pwdSeperator=-1;
+            foreach(var seperator in Config.Seperators) if (pwdSeperator==-1)
+            {
+                pwdSeperator=line.IndexOf(seperator);
+            }
+            int domainLegth=pwdSeperator-emailSeperator-1;
+            if(domainLegth<0)
+            {
+                ProblemForLater(line);
+                return;
+            }
+            string pwd=null;
+            string domain=line.Substring(emailSeperator+1);
+            if(pwdSeperator!=-1)
+            {
+                pwd=line.Substring(pwdSeperator+1);
+                domain=line.Substring(emailSeperator+1,domainLegth);
+            }
+            string user=line.Substring(0,emailSeperator);
+            
+            if(!_dbw.Insert(user,domain,pwd))
             {
                 Console.WriteLine("Fail At Db stopping");
                 Cancel();
@@ -193,7 +199,7 @@ namespace send
 
         public void ProblemForLater(string line)
         {
-            string path = @"/media/bf/Elements SE/REALdata/tr/problemForlater";
+            string path = Config.ProblemForLater;
             using (StreamWriter sw = File.AppendText(path))
             {
                 sw.WriteLine(line);

@@ -12,7 +12,7 @@ namespace send
         public DbSet<DataColl> Data { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite(@"Data Source=/media/bf/Elements SE/REALdata/tr/db/pwdata.db");
+            => options.UseSqlite($@"Data Source={Config.Db}");
     }
 
     public class DataColl
@@ -20,7 +20,8 @@ namespace send
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key, Column(Order = 0)]
         public int Id { get; set; }
-        public string Email { get; set; }
+        public string User { get; set; }
+        public string Domain { get; set; }
         public string Password { get; set; }
     }
 
@@ -38,11 +39,11 @@ namespace send
             }
         }
 
-        public bool Insert(string email, string pwd)
+        public bool Insert(string user,string domain, string pwd)
         {
             try
             {
-                _dc.Add(new DataColl{ Email=email,Password=pwd });
+                _dc.Add(new DataColl{ User=user,Domain=domain,Password=pwd });
                 
                 return true;
             }
