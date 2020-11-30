@@ -76,7 +76,7 @@
       var issue=a.textContent;
       var desc=h.textContent;
 
-      msg=issue+":\n"+desc;
+      msg=issue+desc+":\n";
       navigator.clipboard.writeText(msg);
     }
   }
