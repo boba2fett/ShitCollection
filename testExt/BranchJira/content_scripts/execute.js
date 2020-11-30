@@ -37,8 +37,10 @@
       var desc=h.textContent;
 
       desc=replaceUmlaute(desc);
+      desc=desc.replace("\"","");
+      desc=desc.replace("+","Plus");
       desc=desc.replace(" ","_");
-      desc=desc.replace(/[^a-zA-Z0-9]/g,'_');
+      desc=desc.replace(/[^a-zA-Z0-9\-]/g,'_');
 
       if(typSp.textContent.includes("Bug"))
       {
