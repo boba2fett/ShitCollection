@@ -10,12 +10,6 @@ function listenForClicks() {
       window.close();
     }
 
-    function reset(tabs) {
-      browser.tabs.sendMessage(tabs[0].id, {
-          command: "reset",
-        });
-    }
-
     function reportError(error) {
       console.error(`Error: ${error}`);
     }
@@ -25,11 +19,6 @@ function listenForClicks() {
         .then(execute)
         .catch(reportError);
     }
-    else if (e.target.classList.contains("reset")) {
-      browser.tabs.query({active: true, currentWindow: true})
-        .then(reset)
-        .catch(reportError);
-    }
   });
 }
 function reportExecuteScriptError(error) {
@@ -37,14 +26,6 @@ function reportExecuteScriptError(error) {
   document.querySelector("#error-content").classList.remove("hidden");
   console.error(`Failed to execute execute content script: ${error.message}`);
 }
-
-function updatePopup(restoredSettings) {
-  document.querySelector("#stored").innerHTML = restoredSettings.stored.text || "";
-}
-
-const gettingStoredSettings = browser.storage.local.get();
-gettingStoredSettings.then(updatePopup, reportExecuteScriptError);
-
 browser.tabs.executeScript({file: "/content_scripts/execute.js"})
 .then(listenForClicks)
 .catch(reportExecuteScriptError);

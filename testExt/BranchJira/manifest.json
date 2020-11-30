@@ -13,7 +13,6 @@
     "activeTab",
     "webRequest",
     "webRequestBlocking",
-    "storage",
     "clipboardWrite"
   ],
 
@@ -25,18 +24,7 @@
 
   "browser_action": {
     "default_icon": "icons/32.png",
-    "theme_icons": [{
-        "light": "icons/32-light.png",
-        "dark": "icons/32.png",
-        "size": 32
-    }],
-    "default_title": "Executor",
+    "default_title": "BranchJira",
     "default_popup": "popup/choose_action.html"
-  },
-  "options_ui": {
-		"page": "options/options.html"
-  },
-  "background": {
-    "scripts": ["storage.js"]
   }
 }

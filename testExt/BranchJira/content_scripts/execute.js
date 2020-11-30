@@ -61,6 +61,7 @@
               parentDesc=parentDesc.replace(/[^a-zA-Z0-9\-]/g,'_');
               parent="feature/"+parentDesc+"/";
               var branch=parent+issue+"_"+desc+"";
+              console.log(branch)
               navigator.clipboard.writeText(branch);
           }
         }
@@ -80,15 +81,9 @@
     }
   }
 
-  function reset() {
-    console.log("reset?");
-  }
-
   browser.runtime.onMessage.addListener((message) => {
     if (message.command === "cmd") {
       doAction(message.action);
-    } else if (message.command === "reset") {
-      reset();
     }
   });
 
