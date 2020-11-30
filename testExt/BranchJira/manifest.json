@@ -1,8 +1,8 @@
 {
 
-  "description": "Adds a browser action icon to the toolbar.",
+  "description": "Copies the name of the branch to generate directly into clipboard",
   "manifest_version": 2,
-  "name": "Executo2",
+  "name": "BranchJira",
   "version": "1.0",
   "homepage_url": "https://b2f.ddnss.org/",
   "icons": {
@@ -13,7 +13,8 @@
     "activeTab",
     "webRequest",
     "webRequestBlocking",
-    "storage"
+    "storage",
+    "clipboardWrite"
   ],
 
   "browser_specific_settings": {
@@ -37,10 +38,5 @@
   },
   "background": {
     "scripts": ["storage.js"]
-  },
-
-  "web_accessible_resources": [
-    "res/*"
-  ]
-
+  }
 }
