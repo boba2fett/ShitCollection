@@ -46,5 +46,9 @@
 1. Legends never die
 1. Crap in crap out
 1. Do not demand control, gain it
-
+1. No pain, no gain
+1. You will regret
+1. Do not lie, especially to yourself, but truth can hurt
+1. When you can not explain it, do you really understand
+ 
 **This is the way**
