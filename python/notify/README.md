@@ -1,2 +1,0 @@
-# notify
-easy notify message
