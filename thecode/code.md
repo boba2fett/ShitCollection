@@ -11,5 +11,9 @@
 - Crap in crap out
 - No pain, no gain
 - Power poisons
+- We do not count favors over here
+- You always meet twice
+- Everyone carries a pice to the puzzle
+- Someday and that day may never come
 
 **This is the way**
