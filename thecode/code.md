@@ -1,19 +1,13 @@
 # The Code
 
-- No Excuses
-- No sacrifice too great
-- The world owes you nothing
-- Life decreases
+- Every integrated perspective is a piece of the puzzle
 - Talk is cheap, show me the code
-- I do not care
-- Everyone has their own view of world and how it works
-- Legends are dead and yet they never die
-- Crap in crap out
-- No pain, no gain
-- Power poisons
 - We do not count favors over here
-- You always meet twice
-- Everyone carries a pice to the puzzle
 - Someday and that day may never come
+- You always meet twice
+- The world owes you nothing
+- Destiny has no excuses but there is forgiveness
+- Input dictates output and growth demands sacrifice
+- Personal legends are dead and yet never die
 
-**This is the way**
+**This is the way - to live with integrity, love, and loyalty - in good times and in bad times**
